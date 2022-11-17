@@ -1,0 +1,3 @@
+- chưa thực hiện được api forgot-password và reset-password
+- Build plugins
+-https://design-system.strapi.io/

@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products_news",
+  "info": {
+    "singularName": "products-new",
+    "pluralName": "products-news",
+    "displayName": "ProductsNew",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "products_news"
+    }
+  }
+}
