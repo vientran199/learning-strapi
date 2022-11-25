@@ -28,15 +28,61 @@ export default {
         // },
       ],
     });
+    app.addMenuLink({
+      to: '/ttt',
+      icon: PluginIcon,
+      intlLabel: {
+        id: `${pluginId}.plugin.name`,
+        defaultMessage: name,
+      },
+      Component: async () => {
+        return <div></div>
+      }
+    })
     app.registerPlugin({
       id: pluginId,
       initializer: Initializer,
       isReady: false,
       name,
+      injectionZones: {
+        homePage: {
+          right: []
+        }
+      }
     });
+    // app.registerPlugin({
+    //   // ...
+    //   injectionZones: {
+    //     homePage: {
+    //       right: []
+    //     }
+    //   }
+    // });
   },
 
-  bootstrap(app) {},
+  bootstrap(app) {
+    app.getPlugin('todo').injectComponent('homePage', 'right', {
+      name: 'my-other-plugin-component',
+      Component: () => 'This component is injected',
+    });
+
+    app.injectContentManagerComponent('editView', 'informations', {
+      name: 'my-plugin-my-compo',
+      Component: () => 'my-compo-informations',
+    });
+    app.injectContentManagerComponent('editView', 'right-links', {
+      name: 'my-plugin-my-compo3',
+      Component: () => 'my-compo-right-links',
+    });
+    app.injectContentManagerComponent('listView', 'actions', {
+      name: 'my-plugin-my-compo1',
+      Component: () => 'my-compo-listview-actions',
+    });
+    app.injectContentManagerComponent('listView', 'deleteModalAdditionalInfos', {
+      name: 'my-plugin-my-compo2',
+      Component: () => 'my-compo-listview-deleteModalAdditionalInfos',
+    });
+  },
   async registerTrads({ locales }) {
     const importedTrads = await Promise.all(
       locales.map((locale) => {

@@ -4,7 +4,7 @@ module.exports = [
     path: '/',
     handler: 'myController.index',
     config: {
-      policies: [],
+      policies: ["global::is-authenticated"],
     },
   },
   {
@@ -12,7 +12,7 @@ module.exports = [
     path: '/find',
     handler: 'todo.find',
     config: {
-      policies: [],
+      // policies: ["global::is-authenticated"],
       auth: false,
     },
   },
